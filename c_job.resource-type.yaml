@@ -1,0 +1,32 @@
+description: ''
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    id:
+      type: string
+      description: ''
+      default: ''
+    form:
+      type: array
+      description: ''
+      default: []
+      items:
+        type: string
+    image:
+      type: string
+      description: ''
+      default: ''
+    init_text:
+      type: string
+      description: ''
+      default: ''
+    prompt:
+      type: string
+      description: ''
+      default: ''
+    status:
+      type: string
+      description: ''
+      default: ''
+  required: []

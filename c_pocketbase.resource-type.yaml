@@ -1,0 +1,21 @@
+description: ''
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    login:
+      type: string
+      description: ''
+      default: ''
+    password:
+      type: string
+      description: ''
+      default: ''
+      properties: {}
+      required: []
+    url:
+      type: string
+      description: ''
+      default: ''
+  required:
+    - url

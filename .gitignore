@@ -1,2 +1,4 @@
 node_modules
 backend/pb_data/*
+f/ressources/pocketbase.resource.yaml
+f/ressources/pocketbase.variable.yaml
