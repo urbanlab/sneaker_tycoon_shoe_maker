@@ -17,4 +17,4 @@ RUN bun install
 
 EXPOSE 5173
 
-ENTRYPOINT [ "bun", "--bun", "run", "dev"]
+ENTRYPOINT [ "bun", "run", "dev"]
