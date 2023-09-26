@@ -1,5 +1,6 @@
 # sneaker_tycoon_shoe_maker
-A batch stable diffusion generator
+A batch stable diffusion generatori
+![a shoe grid](image.png)
 
 ## Usage
 
