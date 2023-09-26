@@ -11,29 +11,14 @@ schema:
   $schema: 'https://json-schema.org/draft/2020-12/schema'
   type: object
   properties:
-    a:
-      type: number
-      description: ''
-      default: null
-    b:
-      type: string
-      description: ''
-      default: null
-      enum:
-        - my
-        - enum
-    d:
-      type: string
-      description: ''
-      default: inferred type string from default arg
-    e:
+    job:
       type: object
       description: ''
-      default:
-        nested: object
-      properties:
-        nested:
-          type: string
+      default: null
+      format: resource-c_job
+    sdUrl:
+      type: string
+      description: ''
+      default: 'http://192.168.1.98:7860'
   required:
-    - a
-    - b
+    - job

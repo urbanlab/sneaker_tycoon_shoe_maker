@@ -24,9 +24,38 @@ export async function main(
   }
 
   try {
-    const record = await pb.collection('jobs').getFullList();
 
-    return record;
+    //get all forms
+    let forms = await pb.collection('form').getFullList()
+
+    //get image url for each form
+    forms.map(async (item) => {
+      let files =  pb.files.getUrl(item, item.image);
+      item.image = files;
+      return item;
+    }
+    );
+
+    console.log(forms);
+   
+
+    let record = await pb.collection('jobs').getList(1, 500, {
+      filter: 'status="pending"',
+    });
+
+
+    // for each item if item.form == form array name then get url for each file
+    record.items.map(async (item) => {
+      item.form = forms.find((form) => form.id == item.form);
+      return item;
+    }
+    );
+
+    
+
+
+
+    return record.items;
   } catch (e) {
     console.log(e);
     throw e;

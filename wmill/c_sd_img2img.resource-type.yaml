@@ -1,0 +1,26 @@
+description: ''
+schema:
+  type: object
+  additionalProperties: false
+  properties:
+    cfg_scale:
+      type: integer
+    height:
+      type: integer
+    n_iter:
+      type: integer
+    negative_prompt:
+      type: string
+    prompt:
+      type: string
+    save_images:
+      type: boolean
+    seed:
+      type: integer
+    send_images:
+      type: boolean
+    steps:
+      type: integer
+    width:
+      type: integer
+  required: []
