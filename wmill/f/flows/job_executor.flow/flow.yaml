@@ -1,0 +1,86 @@
+summary: ''
+description: ''
+value:
+  modules:
+    - id: a
+      value:
+        type: script
+        input_transforms:
+          pocketbase:
+            type: static
+            value: '$res:f/ressources/pocketbase'
+        path: f/jobs/get_jobs
+    - id: b
+      value:
+        type: forloopflow
+        modules:
+          - id: c
+            value:
+              type: script
+              input_transforms:
+                job:
+                  type: javascript
+                  expr: |-
+                    let job = {
+                      id: flow_input.iter.value.id,
+                      status: "started"
+                    }
+
+                    return job
+                pocketbase:
+                  type: static
+                  value: '$res:f/ressources/pocketbase'
+              path: f/jobs/update_jobs
+          - id: d
+            value:
+              type: script
+              input_transforms:
+                job:
+                  type: javascript
+                  expr: flow_input.iter.value
+                sdUrl:
+                  type: static
+                  value: 'http://192.168.1.98:7860'
+              path: f/sd/text2image
+          - id: e
+            value:
+              type: script
+              input_transforms:
+                image:
+                  type: javascript
+                  expr: results.d
+                job:
+                  type: javascript
+                  expr: flow_input.iter.value
+                pocketbase:
+                  type: static
+                  value: '$res:f/ressources/pocketbase'
+              path: f/jobs/upload_job_image
+          - id: f
+            value:
+              type: script
+              input_transforms:
+                job:
+                  type: javascript
+                  expr: |-
+                    let job = {
+                      id: flow_input.iter.value.id,
+                      status: "finished"
+                    }
+
+                    return job
+                pocketbase:
+                  type: static
+                  value: '$res:f/ressources/pocketbase'
+              path: f/jobs/update_jobs
+        iterator:
+          type: javascript
+          expr: results.a
+        parallel: false
+        skip_failures: true
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []
+tag: null
