@@ -1,7 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
 	import type { Color, Form, Material, Settings, Texture, Job } from "../../lib/models";
-	import { pb } from "../../lib/store";
+	import { currentJobs, pb } from "../../lib/store";
+	import { get } from "svelte/store";
 
     // color type is array of colors
     let color : Array<Color> = []
@@ -13,6 +14,8 @@
     let progress = 0
 
     let jobs: Array<Job> = []
+
+    $: console.log($currentJobs)
 
     onMount(async () => {
         color = await pb.collection('color').getFullList()
@@ -49,15 +52,13 @@
     async function addJobs() {
 
         // reduce job to 3 items
-        jobs = jobs.slice(0, 3)
+        //jobs = jobs.slice(0, 3)
 
         // set progress to 0
         progress = 0
 
         // Get the number of jobs
         const numJobs = jobs.length
-
-
 
         // Add jobs to the database
         for (const j of jobs) {
@@ -74,6 +75,8 @@
 </script>
 <section>
     <div>
+        <div>Number of {jobs.length}</div>
+        <div>Estimated duration {(jobs.length * 4)/ 60 } minutes</div>
         <progress class="progress w-56" value={progress} max="100"></progress>
     </div>
     <div>
@@ -119,6 +122,30 @@
                 <p>{j.init_text}</p>
             </div>
             {/each}
+        </div>
+    </div>
+
+    <div class="collapse collapse-open bg-base-200">
+        <input type="checkbox" /> 
+        <div class="collapse-title text-xl font-medium">
+            Generation status
+        </div>
+        <div class="collapse-content"> 
+            <div class="flex flex-wrap">
+                {#each $currentJobs as j}
+                <div class="w-1/4 flex flex-col ">
+                    {#if j.status === 'started'}
+                    LOOOOOl
+                        <span class="loading loading-spinner loading-xs"></span>
+                    {/if}
+                    {#if j.status === 'finished'}
+                        <img class="rounded-md" src={pb.files.getUrl(j, j.image)} />
+                        <p>{j.init_text}</p>
+                    {/if}
+
+                </div>
+                {/each}
+            </div>
         </div>
     </div>
         

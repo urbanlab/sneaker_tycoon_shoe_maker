@@ -1,10 +1,11 @@
 <script>
     import "../app.css";
     import { onMount } from "svelte";
-	import { watchUserChange } from "../lib/store";
+	import { watchJobsChange, watchUserChange } from "../lib/store";
 
     onMount(() => {
        watchUserChange();
+       watchJobsChange();
     });
   </script>
   
