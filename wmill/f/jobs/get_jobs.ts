@@ -32,6 +32,8 @@ export async function main(
     forms.map(async (item) => {
       let files =  pb.files.getUrl(item, item.image);
       item.image = files;
+      let mask = pb.files.getUrl(item, item.mask);
+      item.mask = mask
       return item;
     }
     );
@@ -46,14 +48,14 @@ export async function main(
 
     // for each item if item.form == form array name then get url for each file
     record.items.map(async (item) => {
-      item.form = forms.find((form) => form.id == item.form);
+      console.log(forms.find((form) => form.id == item.form)?.mask)
+      item.form = forms.find((form) => form.id == item.form)?.image;
+      item.mask = forms.find((form) => form.id == item.form)?.mask;
       return item;
     }
     );
 
     
-
-
 
     return record.items;
   } catch (e) {

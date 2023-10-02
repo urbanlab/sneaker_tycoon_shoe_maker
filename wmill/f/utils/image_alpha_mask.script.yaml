@@ -1,0 +1,33 @@
+summary: ''
+description: ''
+lock:
+  - anyio==4.0.0
+  - attrs==23.1.0
+  - certifi==2023.7.22
+  - h11==0.14.0
+  - httpcore==0.17.3
+  - httpx==0.24.1
+  - idna==3.4
+  - pillow==10.0.1
+  - python-dateutil==2.8.2
+  - six==1.16.0
+  - sniffio==1.3.0
+  - windmill-api==1.178.1
+  - wmill==1.178.1
+is_template: false
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    image:
+      type: string
+      description: ''
+      default: >-
+        http://192.168.1.98:8090/api/files/yc6m300o97t4q5r/ue0pyj7okn7gy2e/image_1V9TIbSwuu.png
+    mask:
+      type: string
+      description: ''
+      default: >-
+        http://192.168.1.98:8090/api/files/2fa6vj7ga0bm8lc/7su16y7fqwp7xic/running_mask_JWz1Xd6JB9.jpg
+  required: []
