@@ -26,13 +26,31 @@ export async function watchUserChange() {
     });
 }
 
+
+
+
 export async function watchJobsChange() {
-    const getJobs = await pb.collection("jobs").getFullList({}, {});
+    const getJobs = await pb.collection("jobs").getFullList({});
     currentJobs.set(getJobs);
     // subscribe to the user data
     pb.collection("jobs").subscribe('*', async ({action,  record}) => {
         if (action === "update") {
-            currentJobs.set(record);
+            console.log("job updated");
+            currentJobs.set(get(currentJobs).map(job => {
+                if (job.id === record.id) {
+                    return record;
+                }
+                return job;
+            }));
         }
+        if (action === "create") {
+            console.log("job created");
+            currentJobs.set([...get(currentJobs), record]);
+        }
+        if (action === "delete") {
+            console.log("job deleted");
+            currentJobs.set(get(currentJobs).filter(job => job.id !== record.id));
+        }
+
     });
 }

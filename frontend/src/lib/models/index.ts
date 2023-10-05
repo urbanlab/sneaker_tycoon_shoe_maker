@@ -26,6 +26,7 @@ export interface Job {
     status?: string | "pending" | "started" | "finished";
     image?: string;
     form?: Form;
+    rank?: number;
 }
 
 
