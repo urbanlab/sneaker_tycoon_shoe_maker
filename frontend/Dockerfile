@@ -1,5 +1,4 @@
-FROM oven/bun as prod
-
+FROM node:lts
 WORKDIR /app
 
 COPY src/ /app/src
@@ -13,8 +12,8 @@ COPY tailwind.config.js /app/tailwind.config.js
 COPY tsconfig.json /app/tsconfig.json
 COPY vite.config.ts /app/vite.config.ts
 
-RUN bun install
+RUN npm install
 
 EXPOSE 5173
 
-ENTRYPOINT [ "bun", "run", "dev"]
+ENTRYPOINT [ "npm", "run", "dev"]

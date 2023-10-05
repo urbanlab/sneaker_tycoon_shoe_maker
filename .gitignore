@@ -2,3 +2,4 @@ node_modules
 backend/pb_data/*
 wmill/f/ressources/pocketbase.resource.yaml
 wmill/f/ressources/pocketbase.variable.yaml
+sd
