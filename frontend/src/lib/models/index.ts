@@ -14,10 +14,10 @@ export interface Material {
     name?: string;
 }
 
-export interface Texture {
-    id?: string;
-    name?: string;
-}
+// export interface Texture {
+//     id?: string;
+//     name?: string;
+// }
 
 export interface Job {
     id?: string;
