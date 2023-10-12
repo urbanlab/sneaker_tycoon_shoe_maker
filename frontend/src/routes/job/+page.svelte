@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-	import type { Color, Form, Material, Settings, Texture, Job } from "../../lib/models";
+	import type { Color, Form, Material, Settings, Job } from "../../lib/models";
 	import { currentJobs, pb } from "../../lib/store";
 	import { get } from "svelte/store";
 
@@ -8,7 +8,6 @@
     let color : Array<Color> = []
     let form : Array<Form> = []
     let material : Array<Material> = []
-    let texture : Array<Texture> = []
     let settings: Settings = {}
 
     let progress = 0
@@ -21,21 +20,19 @@
         color = await pb.collection('color').getFullList()
         form = await pb.collection('form').getFullList()
         material = await pb.collection('material').getFullList()
-        texture = await pb.collection('texture').getFullList()
         settings = await pb.collection('settings').getFullList()
         settings = settings[0]
     })
 
     function generatePrompts() {
 
-        // Loop through each color, material, form, and texture
+        // Loop through each color, material, form, and 
         for (const c of color) {
             for (const m of material) {
                 for (const f of form) {
-                    for (const t of texture) {
                         // Create a prompt for each combination
-                        const prompt = ` ${settings.init_prompt} ${c.name}, ${m.name}, and ${t.name}, ${settings.ending_prompt}`;
-                        const init = `${c.name}_${m.name}_${f.name}_${t.name}`;
+                        const prompt = ` ${settings.init_prompt} ${f.name} shoe  ${c.name}, ${m.name}, ${settings.ending_prompt}`;
+                        const init = `${c.name}_${m.name}_${f.name}`;
                         let job : Job = {
                             prompt: prompt,
                             form: f.id,
@@ -44,7 +41,6 @@
                             rank: 3,
                         }
                         jobs = [...jobs, job]
-                    }
                 }
             }
         }
@@ -87,7 +83,7 @@
 <section>
     <div>
         <div>Number of {jobs.length}</div>
-        <div>Estimated duration {(jobs.length * 4)/ 60 } minutes</div>
+        <div>Estimated duration {(jobs.length * 25)/ 60 } minutes</div>
         <progress class="progress w-56" value={progress} max="100"></progress>
     </div>
     <div>
@@ -107,12 +103,6 @@
             <option disabled selected>Material</option>
             {#each material as m}
                 <option value={m.id}>{m.name}</option>
-            {/each}
-        </select>
-        <select class="select w-full max-w-xs">
-            <option disabled selected>Texture</option>
-            {#each texture as t}
-                <option value={t.id}>{t.name}</option>
             {/each}
         </select>
     </div>
@@ -146,11 +136,12 @@
                 {#each $currentJobs as j}
                 <div class="w-1/4 flex flex-col ">
                     {#if j.status === 'started'}
-                    LOOOOOl
                         <span class="loading loading-spinner loading-xs"></span>
                     {/if}
                     {#if j.status === 'finished'}
-                        <img class="rounded-md" loading="lazy" src={pb.files.getUrl(j, j.image)} />
+                        <a href="{pb.files.getUrl(j, j.image)}" target="_blank">
+                            <img class="rounded-md" loading="lazy" src={pb.files.getUrl(j, j.image)} />
+                        </a>
                         <p>{j.init_text}</p>
                         <div>
                             <button class="btn {j.rank == 1 ? "btn-secondary" : " btn-primary" }" on:click={() => updateJobRank(j.id, 1)}>1</button>

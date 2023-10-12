@@ -4,7 +4,7 @@
 	import { watchJobsChange, watchUserChange } from "../lib/store";
 
     onMount(() => {
-       watchUserChange();
+       //watchUserChange();
        watchJobsChange();
     });
   </script>
