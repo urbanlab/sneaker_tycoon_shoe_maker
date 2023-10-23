@@ -11,6 +11,7 @@ type CSdImg2img = {
   steps: number,
   width: number,
   height: number,
+  sampler_name: number,
   n_iter: number,
   prompt: string,
   cfg_scale: number,
@@ -65,11 +66,16 @@ export async function main(
     width: 1344,
     height: 768,
     n_iter: 1,
+    sampler_name: "Euler a",
+    enable_hr: false,
+    hr_scale: 1.43,
+    hr_upscaler: "Latent",
+    hr_second_pass_steps: 30,
     prompt: job.prompt,
+    negative_prompt: "text, logo, grey, watermark, signature, grainy",
     cfg_scale: 7,
     save_images: false,
     send_images: true,
-    negative_prompt: "text, logo",
     alwayson_scripts: {
       controlnet: {
         args: [
@@ -77,9 +83,9 @@ export async function main(
                 enabled: true,
                 module: "depth_midas",
                 model: "diffusers_xl_depth_full [2f51180b]",
-                weight: 0.8,
+                weight: 1,
                 image: form64,
-                controlnet_processor_res: 1024
+                //controlnet_processor_res: 1024
             }
         ]
       }

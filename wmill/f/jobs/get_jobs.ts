@@ -38,16 +38,21 @@ export async function main(
     }
     );
 
-    console.log(forms);
    
+    // let record = await pb.collection('jobs').getList(1, 500, {
+    //   filter: 'status="pending"',
+    // });
 
-    let record = await pb.collection('jobs').getList(1, 500, {
+    //get every record page by page
+    let record = await pb.collection('jobs').getFullList({
       filter: 'status="pending"',
     });
 
 
+
+    
     // for each item if item.form == form array name then get url for each file
-    record.items.map(async (item) => {
+    record.map(async (item) => {
       item.mask = forms.find((form) => form.id == item.form)?.mask;
       item.form = forms.find((form) => form.id == item.form)?.image;
       return item;
@@ -56,7 +61,7 @@ export async function main(
 
     
 
-    return record.items;
+    return record;
   } catch (e) {
     console.log(e);
     throw e;
