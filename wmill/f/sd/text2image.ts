@@ -61,24 +61,25 @@ export async function main(
 
   let sdConfig : CSdImg2img = {
     seed: -1,
-    steps: 20,
-    width: 512,
-    height: 512,
+    steps: 30,
+    width: 1344,
+    height: 768,
     n_iter: 1,
     prompt: job.prompt,
     cfg_scale: 7,
     save_images: false,
     send_images: true,
-    negative_prompt: "",
+    negative_prompt: "text, logo",
     alwayson_scripts: {
       controlnet: {
         args: [
             {
                 enabled: true,
                 module: "depth_midas",
-                model: "control_sd15_depth [fef5e48e]",
-                weight: 1.0,
-                image: form64
+                model: "diffusers_xl_depth_full [2f51180b]",
+                weight: 0.8,
+                image: form64,
+                controlnet_processor_res: 1024
             }
         ]
       }

@@ -48,9 +48,8 @@ export async function main(
 
     // for each item if item.form == form array name then get url for each file
     record.items.map(async (item) => {
-      console.log(forms.find((form) => form.id == item.form)?.mask)
-      item.form = forms.find((form) => form.id == item.form)?.image;
       item.mask = forms.find((form) => form.id == item.form)?.mask;
+      item.form = forms.find((form) => form.id == item.form)?.image;
       return item;
     }
     );

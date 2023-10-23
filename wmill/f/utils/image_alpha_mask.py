@@ -40,7 +40,7 @@ def main(
     # add a header to the image
     img_str = "data:image/png;base64," + img_str.decode("utf-8")
 
-    print(img_str)
+    #print(img_str)
 
     # clean up
     os.remove("image.png")
