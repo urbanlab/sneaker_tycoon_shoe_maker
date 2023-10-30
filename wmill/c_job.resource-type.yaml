@@ -2,6 +2,15 @@ description: ''
 schema:
   $schema: 'https://json-schema.org/draft/2020-12/schema'
   type: object
+  order:
+    - id
+    - form
+    - image
+    - prompt
+    - status
+    - init_text
+    - rank
+    - json
   properties:
     id:
       type: string
@@ -21,10 +30,47 @@ schema:
       type: string
       description: ''
       default: ''
+    json:
+      type: object
+      description: ''
+      properties:
+        id:
+          type: string
+          description: ''
+          default: ''
+        color:
+          type: string
+          description: ''
+          default: ''
+        fileName:
+          type: string
+          description: ''
+          default: ''
+        form:
+          type: string
+          description: ''
+          default: ''
+        material:
+          type: string
+          description: ''
+          default: ''
+        prompt:
+          type: string
+          description: ''
+          default: ''
+        score:
+          type: number
+          description: ''
+          default: 3
+      required: []
     prompt:
       type: string
       description: ''
       default: ''
+    rank:
+      type: number
+      description: ''
+      default: 3
     status:
       type: string
       description: ''
