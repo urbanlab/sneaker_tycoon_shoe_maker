@@ -40,29 +40,42 @@ def main(
     pocketbase: c_pocketbase,
     s3: s3,
 ):
+
+    try:
+        # remove zip file
+        os.remove('shoes.zip')
+
+        # remove folder images recursively
+        os.system('rm -rf images')
+
+        #remove json file
+        os.remove('shoes.json')
+    except OSError as e:
+        print("Error: %s - %s." % (e.filename, e.strerror))
+
+
     client = PocketBase('http://192.168.1.98:8090')
     client.admins.auth_with_password(pocketbase['login'], pocketbase['password'])
     result = client.collection("jobs").get_full_list()
     
-    imagesUrl = []
     jsonFile = []
 
 
-    for job in result:
-        # add image url to list
-        imagesUrl.append(client.get_file_url(job, job.image, {}))
-        # add json to list
-        jsonFile.append(job.json)
-
     # create folder images 
     os.makedirs('images')
+    
 
-    # download images in folder images
-    for url in imagesUrl:
+    for job in result:
+        # add image url to json list {url, job.id}
+        url = client.get_file_url(job, job.image, {})
         print("Downloading: " + url )
         r = requests.get(url, allow_redirects=True)
-        open('images/' + url.split('/')[-1], 'wb').write(r.content)
-    
+        # rename image to job.id + .png
+        open('images/' + job.id + '.png', 'wb').write(r.content)
+
+        jsonFile.append(job.json)
+
+
     # create json file
     with open('shoes.json', 'w') as outfile:
         json.dump(jsonFile, outfile)
@@ -90,14 +103,5 @@ def main(
             'Key': time.strftime("%Y%m%d-%H%M%S") + '.zip'
         }
     )
-
-    # remove zip file
-    os.remove('shoes.zip')
-
-    # remove folder images recursively
-    os.system('rm -rf images')
-
-    #remove json file
-    os.remove('shoes.json')
 
     return url
