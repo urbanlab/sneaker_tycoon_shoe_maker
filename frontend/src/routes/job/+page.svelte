@@ -87,8 +87,8 @@
                             prompt: prompt,
                         }
 					};
-                    // add 7 times to jobs
-                    for (let i = 0; i < 7; i++) {
+                    // add 8 times to jobs
+                    for (let i = 0; i < 8; i++) {
                         jobs = [...jobs, job];
                     }
 				}
