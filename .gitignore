@@ -3,3 +3,7 @@ backend/pb_data/*
 wmill/f/ressources/pocketbase.resource.yaml
 wmill/f/ressources/pocketbase.variable.yaml
 sd
+.env
+frontend/.svelte-kit/*
+wmill/u/yassin/s3.resource.yaml
+wmill/u/yassin/s3.variable.yaml
