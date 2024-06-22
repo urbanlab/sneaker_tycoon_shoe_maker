@@ -1,9 +1,18 @@
 description: ''
 value:
-  id: zcqg2ihyeh1fyuv
+  id: yz6gm45nqmsm5eu
   form: []
   image: ''
   init_text: ''
+  json:
+    id: ''
+    color: ''
+    fileName: ''
+    form: ''
+    material: ''
+    prompt: ''
+    score: 3
   prompt: ''
+  rank: 3
   status: started
 resource_type: c_job

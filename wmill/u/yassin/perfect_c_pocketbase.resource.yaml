@@ -1,0 +1,6 @@
+description: ''
+value:
+  login: yassin@siouda.com
+  password: '$var:u/yassin/perfect_c_pocketbase'
+  url: 'http://192.168.1.98:8090'
+resource_type: c_pocketbase

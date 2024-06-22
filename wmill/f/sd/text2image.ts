@@ -67,6 +67,7 @@ export async function main(
     height: 768,
     n_iter: 1,
     sampler_name: "Euler a",
+    denoising_strength: 0,
     enable_hr: true,
     hr_scale: 1.43,
     hr_upscaler: "Latent",
@@ -91,6 +92,8 @@ export async function main(
       }
     }
   }
+
+  console.log(sdConfig)
 
   // fetch the image
   const request = await fetch(sdUrl + "/sdapi/v1/txt2img", {

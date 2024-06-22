@@ -1,22 +1,6 @@
 summary: upload_job_image
 description: ''
-lock:
-  - '{'
-  - '  "version": "2",'
-  - '  "remote": {},'
-  - '  "npm": {'
-  - '    "specifiers": {'
-  - '      "pocketbase@0.17.3": "pocketbase@0.17.3"'
-  - '    },'
-  - '    "packages": {'
-  - '      "pocketbase@0.17.3": {'
-  - '        "integrity": "sha512-tqtk7kd8K4/5BspCzqf8DcbjS+iCBLFdpC7s/d6hAuxeoqP5MH6llRICm22dldJDFcTa1chuCfyeeKoU5mYaHQ==",'
-  - '        "dependencies": {}'
-  - '      }'
-  - '    }'
-  - '  }'
-  - '}'
-is_template: false
+lock: '!inline f/jobs/upload_job_image.script.lock'
 kind: script
 schema:
   $schema: 'https://json-schema.org/draft/2020-12/schema'

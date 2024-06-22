@@ -8,7 +8,7 @@ value:
         input_transforms:
           pocketbase:
             type: static
-            value: '$res:f/ressources/pocketbase'
+            value: '$res:u/yassin/perfect_c_pocketbase'
         path: f/jobs/get_jobs
     - id: b
       value:
@@ -29,7 +29,7 @@ value:
                     return job
                 pocketbase:
                   type: static
-                  value: '$res:f/ressources/pocketbase'
+                  value: '$res:u/yassin/perfect_c_pocketbase'
               path: f/jobs/update_jobs
           - id: d
             value:
@@ -54,7 +54,7 @@ value:
                   expr: flow_input.iter.value
                 pocketbase:
                   type: static
-                  value: '$res:f/ressources/pocketbase'
+                  value: '$res:u/yassin/perfect_c_pocketbase'
               path: f/jobs/upload_job_image
           - id: f
             value:
@@ -71,7 +71,7 @@ value:
                     return job
                 pocketbase:
                   type: static
-                  value: '$res:f/ressources/pocketbase'
+                  value: '$res:u/yassin/perfect_c_pocketbase'
               path: f/jobs/update_jobs
         iterator:
           type: javascript
@@ -83,5 +83,5 @@ schema:
   type: object
   properties: {}
   required: []
-tag: null
+visible_to_runner_only: false
 ws_error_handler_muted: false

@@ -1,11 +1,6 @@
 summary: text2image
 description: ''
-lock:
-  - '{'
-  - '  "version": "2",'
-  - '  "remote": {}'
-  - '}'
-is_template: false
+lock: '!inline f/sd/text2image.script.lock'
 kind: script
 schema:
   $schema: 'https://json-schema.org/draft/2020-12/schema'
@@ -20,5 +15,6 @@ schema:
       type: string
       description: ''
       default: 'http://192.168.1.98:7860'
+      originalType: string
   required:
     - job
