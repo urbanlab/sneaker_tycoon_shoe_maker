@@ -2,6 +2,7 @@ version: '3'
 services:
   back:
     container_name: svelte-template-backend
+    restart: unless-stopped
     build: backend/
     ports:
       - "8090:8090"
@@ -10,6 +11,7 @@ services:
       - ./backend/pb_data/:/pb_data/
   front:
     container_name: svelte-template-frontend
+    restart: unless-stopped
     build: frontend/
     volumes:
       - ./frontend/src/:/app/src
