@@ -62,12 +62,12 @@ export async function main(
 
   let sdConfig : CSdImg2img = {
     seed: -1,
-    steps: 30,
+    steps: 20,
     width: 1344,
     height: 768,
     n_iter: 1,
     sampler_name: "Euler a",
-    denoising_strength: 0,
+    denoising_strength: 0.7,
     enable_hr: true,
     hr_scale: 1.43,
     hr_upscaler: "Latent",
@@ -86,7 +86,7 @@ export async function main(
                 model: "diffusers_xl_depth_full [2f51180b]",
                 weight: 1,
                 image: form64,
-                //controlnet_processor_res: 1024
+                controlnet_processor_res: 512
             }
         ]
       }

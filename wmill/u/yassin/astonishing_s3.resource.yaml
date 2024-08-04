@@ -1,0 +1,11 @@
+description: ''
+value:
+  accessKey: sneakers-tycoon
+  bucket: sneakers-tycoon
+  endPoint: 'https://endpoint-s3.doesnotexist.club'
+  pathStyle: true
+  port: 443
+  region: fr
+  secretKey: '$var:u/yassin/astonishing_s3'
+  useSSL: true
+resource_type: s3

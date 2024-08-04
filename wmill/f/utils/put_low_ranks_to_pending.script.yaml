@@ -1,0 +1,15 @@
+summary: Put jobs with 1 rank to pending state
+description: ''
+lock: '!inline f/utils/put_low_ranks_to_pending.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    pocketbase:
+      type: object
+      description: ''
+      default: null
+      format: resource-c_pocketbase
+  required:
+    - pocketbase

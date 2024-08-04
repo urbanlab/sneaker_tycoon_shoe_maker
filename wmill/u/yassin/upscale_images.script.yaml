@@ -1,0 +1,15 @@
+summary: upscale images
+description: ''
+lock: '!inline u/yassin/upscale_images.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    pocketbase:
+      type: object
+      description: ''
+      default: null
+      format: resource-c_pocketbase
+  required:
+    - pocketbase
